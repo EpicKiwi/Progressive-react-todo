@@ -1,0 +1,19 @@
+{
+  "name": "progressive-react-todo",
+  "version": "1.0.0",
+  "description": "A progressive WebApp to discover and experiment React and Stores",
+  "main": "front/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EpicKiwi/Progressive-react-todo.git"
+  },
+  "author": "EpicKiwi <me@epickiwi.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EpicKiwi/Progressive-react-todo/issues"
+  },
+  "homepage": "https://github.com/EpicKiwi/Progressive-react-todo#readme"
+}
