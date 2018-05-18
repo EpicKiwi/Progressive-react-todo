@@ -1,2 +1,3 @@
-# Progressive-react-todo
-A progressive WebApp to discover and experiment React and Stores
+# Progressive React To-do
+
+> A progressive WebApp to discover and experiment React and Stores
