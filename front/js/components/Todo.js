@@ -7,6 +7,7 @@ module.exports = class Todo extends React.Component {
     constructor() {
         super()
         this.toggleChecked = this.toggleChecked.bind(this)
+        this.removeTask = this.removeTask.bind(this)
     }
 
     componentDidMount() {
@@ -21,6 +22,12 @@ module.exports = class Todo extends React.Component {
         }
     }
 
+    removeTask(){
+        if(this.props.todo.id){
+            TodoStore.commit("removeTask",{id:this.props.todo.id})
+        }
+    }
+
     render() {
         return <div className="todo-item">
             <div className="todo-checkbox">
@@ -29,6 +36,9 @@ module.exports = class Todo extends React.Component {
             <div className="todo-content">
                 <h3 className="todo-title">{this.props.todo.title}</h3>
             </div>
+            <nav className="todo-toolbar" >
+                <div className="todo-toolbar-button" onClick={this.removeTask} ><i className="material-icons">close</i></div>
+            </nav>
         </div>
     }
 

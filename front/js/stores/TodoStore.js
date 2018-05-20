@@ -5,17 +5,20 @@ let nextTaskId = 1
 class Task {
     constructor(id, title){
         this.id = id
-        if(title instanceof String){
-            this.title = title
-            this.checked = false
-            this.date = new Date()
-        } else {
+        this.title = title
+        this.checked = false
+        this.date = new Date()
+        this.categories = []
+
+        if(typeof title == "object"){
             if(title.title)
                 this.title = title.title
             if(title.checked)
                 this.checked = title.checked
             if(title.date)
                 this.date = new Date(title.date)
+            if(title.categories)
+                this.categories = title.categories
         }
     }
 }
@@ -36,7 +39,8 @@ class TodoStore extends ProgressiveStore {
 
     loadStorageAction(options,payload){
         super.loadStorageAction(options,payload)
-        this.state.tasks = this.state.tasks.map((task) => new Task(task.id,task))
+        if(this.state.tasks)
+            this.state.tasks = this.state.tasks.map((task) => new Task(task.id,task))
     }
 
     createTaskAction({title},payload){
@@ -53,6 +57,13 @@ class TodoStore extends ProgressiveStore {
         if(!task) return;
 
         Object.assign(task,options)
+        payload.task = task
+    }
+
+    removeTaskAction(options,payload){
+        let task = this.getTask(options.id)
+        if(!task) return;
+        this.state.tasks.splice(this.state.tasks.indexOf(task),1)
         payload.task = task
     }
 

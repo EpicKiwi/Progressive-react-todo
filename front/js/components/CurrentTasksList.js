@@ -18,6 +18,7 @@ module.exports = class CurrentTasksList extends React.Component {
         this.update()
         this.observables.push(TodoStore.getActionObservable("createTask").subscribe(() => this.update()))
         this.observables.push(TodoStore.getActionObservable("updateTask").subscribe(() => this.update()))
+        this.observables.push(TodoStore.getActionObservable("removeTask").subscribe(() => this.update()))
     }
 
     componentWillUnmount() {

@@ -38,7 +38,7 @@ module.exports = class AddTaskForm extends React.Component {
     render() {
         return <form className="add-task-form" onSubmit={this.onSubmitForm} >
             <input type="text" name="title" className="add-task-title-input" value={this.state.title} onChange={this.onTitleChange} placeholder="Ajouter une tâche" />
-            <button className="add-task-button" >Ajouter</button>
+            <button className="add-task-button" ><i className="material-icons">add</i></button>
         </form>
     }
 }
