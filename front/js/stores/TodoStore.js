@@ -1,29 +1,49 @@
-const Store = require("./Store")
+const ProgressiveStore = require("./ProgressiveStore")
 
 let nextTaskId = 1
 
 class Task {
-    constructor(title){
-        this.id = nextTaskId
-        this.title = title
-        this.checked = false
-        this.date = new Date()
-        nextTaskId++
+    constructor(id, title){
+        this.id = id
+        if(title instanceof String){
+            this.title = title
+            this.checked = false
+            this.date = new Date()
+        } else {
+            if(title.title)
+                this.title = title.title
+            if(title.checked)
+                this.checked = title.checked
+            if(title.date)
+                this.date = new Date(title.date)
+        }
     }
 }
 
-class TodoStore extends Store {
+class TodoStore extends ProgressiveStore {
 
     constructor(){
         super()
-        this.state.tasks = []
+
+        if(!this.state.tasks)
+            this.state.tasks = []
+
+        if(!this.state.nextTaskId)
+            this.state.nextTaskId = 1;
     }
 
     // ACTIONS
 
+    loadStorageAction(options,payload){
+        super.loadStorageAction(options,payload)
+        this.state.tasks = this.state.tasks.map((task) => new Task(task.id,task))
+    }
+
     createTaskAction({title},payload){
-        let task = new Task(title)
+        let task = new Task(this.state.nextTaskId,title)
+
         this.state.tasks.push(task)
+        this.state.nextTaskId++
 
         payload.task = task
     }
