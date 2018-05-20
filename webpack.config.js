@@ -18,6 +18,10 @@ module.exports = {
                         presets: ["react"]              //   On utilise le preset "react" pour supporter le JSX
                     }
                 }
+            },
+            {
+                test: /.*\.css/,
+                use: ["style-loader","css-loader"]
             }
         ]
     },
