@@ -43,8 +43,9 @@ class TodoStore extends ProgressiveStore {
             this.state.tasks = this.state.tasks.map((task) => new Task(task.id,task))
     }
 
-    createTaskAction({title},payload){
+    createTaskAction({title,categories},payload){
         let task = new Task(this.state.nextTaskId,title)
+        task.categories = categories
 
         this.state.tasks.push(task)
         this.state.nextTaskId++

@@ -80,6 +80,10 @@
     height: 100%;
 }
 
+.todo-item h3 {
+    font-weight: normal;
+}
+
 .todo-item .todo-content {
     flex: 1;
 }
@@ -116,4 +120,28 @@
     font-size: 25px;
     color: #4e4e4e;
     padding: 10px;
+}
+
+.todo-category {
+    display: inline-block;
+    font-size: 10px;
+    margin-right: 5px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: #e5e5e5;
+    color: #595959;
+}
+
+@media screen and (max-width: 1000px) {
+    .current-task-list, .checked-task-list, .add-task-form {
+        width: 97%;
+    }
+
+    .todo-item h3 {
+        font-size: 15px;
+    }
+
+    .app-title {
+        display: none;
+    }
 }

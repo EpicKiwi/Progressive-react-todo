@@ -26,7 +26,17 @@ module.exports = class AddTaskForm extends React.Component {
     onSubmitForm(e){
         e.preventDefault()
         if(this.state.title){
-            TodoStore.commit("createTask",{title:this.state.title})
+
+            let categories = []
+            let categoriesMatch = this.state.title.match(/#([^ ]+)/ig)
+            if(categoriesMatch)
+                categories = categoriesMatch.map((el) => el.replace(/^#/,""))
+            let finalTitle = this.state.title.replace(/#[^ ]+/ig,"").replace(/  +/ig," ").trim()
+
+            let result = TodoStore.commit("createTask",{title:finalTitle,categories})
+
+            console.log(result)
+
             this.setState({title:""})
         }
     }
